@@ -12,7 +12,7 @@ interface Props {
 export const Logo = ({ mobile }: Props) => {
   const { theme, systemTheme } = useTheme();
   const isDarkTheme = theme === "dark" || (theme === "system" && systemTheme === "dark");
-
+  console.log(theme);
   return (
     <Link href="/" className="flex items-center gap-2">
       {!mobile && <PiggyBank className="stroke h-11 w-11 stroke-amber-500 strock-[1.5]" />}
