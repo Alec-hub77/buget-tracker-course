@@ -35,7 +35,7 @@ const DesctopNavbar = () => {
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
-          <UserButton showName />
+          <UserButton />
         </div>
       </nav>
     </header>

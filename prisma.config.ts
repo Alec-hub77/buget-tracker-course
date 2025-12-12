@@ -10,6 +10,7 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
-    url: "file:./dev.db",
+    // Use environment variable if present; default to a local SQLite file inside the `prisma` folder
+    url: process.env.DATABASE_URL || "file:./prisma/dev.db",
   },
 });
