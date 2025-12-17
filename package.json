@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.35.6",
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-better-sqlite3": "^7.1.0",
     "@prisma/client": "^7.1.0",
@@ -64,6 +66,7 @@
     "@tailwindcss/postcss": "^4",
     "@tanstack/react-query-devtools": "^5.91.1",
     "@types/better-sqlite3": "^7.6.13",
+    "@types/emoji-mart": "^3.0.14",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     return Response.json(parsedType, { status: 400 });
   }
   const type = parsedType.data;
-  const categories = await prisma.categoty.findMany({
+  const categories = await prisma.category.findMany({
     where: {
       userId: user.id,
       ...(type && { type }),

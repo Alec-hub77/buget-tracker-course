@@ -16,7 +16,8 @@ model UserSettings {
   currency String
 }
 
-model Categoty {
+model Category {
+  id String @id @default(uuid())
   createdAt DateTime @default(now())
   name String
   userId String

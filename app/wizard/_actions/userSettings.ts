@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { UpdateUserCurrencySchema } from "@/schema/userSetting";
+import { UpdateUserCurrencySchema } from "@/validators/userSetting";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 

@@ -3,12 +3,11 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { createTransactionSchema, CreateTransactionSchemeType } from "@/schema/transaction";
+import { CreateTransactionSchema } from "@/validators/transaction";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { TextField } from "@/components/TextField";
+import { FormFieldWrapper } from "@/components/common/FormFieldWrapper";
 import { CategoryPicker } from "./CategoryPicker";
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 
 export const CreateTransactionDialog = ({ trigger, type }: Props) => {
   const form = useForm({
-    resolver: zodResolver(createTransactionSchema),
+    resolver: zodResolver(CreateTransactionSchema),
     defaultValues: {
       type,
       date: new Date(),
@@ -37,48 +36,34 @@ export const CreateTransactionDialog = ({ trigger, type }: Props) => {
         </DialogHeader>
         <Form {...form}>
           <form className="space-y-4">
-            {/* <FormField
-              control={form.control}
-              name="descripion"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      <Input defaultValue={""} {...field} />
-                    </FormControl>
-                    <FormDescription>Transaction descripion (optional)</FormDescription>
-                  </FormItem>
-                );
-              }}
-            /> */}
-            <TextField
+            <FormFieldWrapper
               control={form.control}
               name="descripion"
               label="Description"
               description="Transaction description (optional)"
             />
-            <TextField
+            <FormFieldWrapper
               control={form.control}
               name="amount"
               defaultValue={0}
               inputType="number"
-              label="Ampount"
+              label="Amount"
               description="Transaction amount (required)"
             />
             <div className="flex items-center justify-between gap-2">
-              {/* Category Picker */}
               <FormField
                 control={form.control}
                 name="category"
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <CategoryPicker type="expense" />
-                      </FormControl>
-                      <FormDescription>Transaction descripion (optional)</FormDescription>
+                      <div className="flex gap-2">
+                        <FormLabel>Category</FormLabel>
+                        <FormControl>
+                          <CategoryPicker type={type} />
+                        </FormControl>
+                      </div>
+                      <FormDescription>Select a category for this transaction</FormDescription>
                     </FormItem>
                   );
                 }}

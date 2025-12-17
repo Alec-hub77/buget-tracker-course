@@ -4,14 +4,21 @@ import { PiggyBank } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 interface Props {
   mobile?: boolean;
 }
 
 export const Logo = ({ mobile }: Props) => {
-  const { theme, systemTheme } = useTheme();
-  const isDarkTheme = theme === "dark" || (theme === "system" && systemTheme === "dark");
+  const [currentTheme, setCurrentTheme] = useState<string | undefined>(undefined);
+  const { resolvedTheme } = useTheme();
+  // const isDarkTheme = theme === "dark" || (theme === "system" && systemTheme === "dark");
+  const isDarkTheme = currentTheme === "dark";
+
+  useEffect(() => {
+    setCurrentTheme(resolvedTheme);
+  }, [resolvedTheme]);
 
   return (
     <Link href="/" className="flex items-center gap-2">
