@@ -6,22 +6,28 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Category } from "@/lib/generated/prisma/client";
 import { TransactionType } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateCategoryDialog } from "./CreateCategoryDialog";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Props {
   type: TransactionType;
+  onChange: (value: string) => void;
 }
 
-export const CategoryPicker = ({ type }: Props) => {
+export const CategoryPicker = ({ type, onChange }: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>("");
   const { data: categories } = useQuery<Category[]>({
     queryKey: ["categories", type],
     queryFn: async () => fetch(`/api/categories?type=${type}`).then((res) => res.json()),
   });
+
+  useEffect(() => {
+    if (!value) return;
+    onChange(value);
+  }, [onChange, value]);
 
   const selectedCategory = categories?.find((cat: Category) => cat.name === value);
 

@@ -15,6 +15,7 @@ interface Props<T extends FieldValues> {
   placeholder?: string;
   renderControl?: RenderControl<T>;
   formItemClassName?: string;
+  formControlClassName?: string;
 }
 
 export const FormFieldWrapper = <T extends FieldValues>({
@@ -26,6 +27,7 @@ export const FormFieldWrapper = <T extends FieldValues>({
   inputType = "text",
   renderControl,
   formItemClassName,
+  formControlClassName,
 }: Props<T>) => {
   return (
     <FormField
@@ -35,7 +37,7 @@ export const FormFieldWrapper = <T extends FieldValues>({
         return (
           <FormItem className={formItemClassName}>
             <FormLabel>{label}</FormLabel>
-            <FormControl>
+            <FormControl className={formControlClassName}>
               {renderControl ? renderControl(field) : <Input {...field} placeholder={placeholder} type={inputType} />}
             </FormControl>
             <FormMessage />

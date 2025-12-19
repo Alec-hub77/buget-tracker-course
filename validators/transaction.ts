@@ -1,10 +1,10 @@
 import z from "zod";
 
 export const CreateTransactionSchema = z.object({
-  amount: z.coerce.number().positive().multipleOf(0.01),
-  descripion: z.string().optional(),
+  amount: z.coerce.number("Amount required").positive("Amount should not be less than 0").multipleOf(0.01),
+  description: z.string().optional(),
   date: z.coerce.date(),
-  category: z.string(),
+  category: z.string("Category required"),
   type: z.union([z.literal("income"), z.literal("expense")]),
 });
 
