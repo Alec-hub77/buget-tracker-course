@@ -25,7 +25,7 @@ export const Overview = ({ userSettings }: Props) => {
   });
 
   return (
-    <div className="px-4 flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <div className="flex flex-wrap justify-between gap-2 py-6">
         <h2 className="text-3xl font-bold">Overview</h2>
         <div className="flex intems-center gap-3">

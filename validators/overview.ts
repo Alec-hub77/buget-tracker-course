@@ -10,7 +10,6 @@ export const OverviewQuerySchema = z
   .refine(
     ({ from, to }) => {
       const days = differenceInDays(to, from);
-      console.log("DIFFERENCE", days);
       const isValidRange = days >= 0 && days <= MAX_DATE_RANGE_DAYS;
       return isValidRange;
     },
