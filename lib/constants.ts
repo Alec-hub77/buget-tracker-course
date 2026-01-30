@@ -12,3 +12,5 @@ export const CURRENCIES = [
 ];
 
 export type Currency = (typeof CURRENCIES)[0];
+
+export const MAX_DATE_RANGE_DAYS = 90;
