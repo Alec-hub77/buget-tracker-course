@@ -7,7 +7,9 @@ import { UserSettings } from "@/lib/generated/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { StatsCard } from "./StatsCard";
-import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
+import { Wallet } from "lucide-react";
+import { TrendingDownIcon } from "@/components/ui/trendingDownIcon";
+import { TrendingUpIcon } from "@/components/ui/trendingUpIcon";
 
 interface Props {
   userSettings: UserSettings;
@@ -33,20 +35,10 @@ export const StatsCards = ({ userSettings, from, to }: Props) => {
   return (
     <div className="relative flex w-full flex-wrap gap-2 md:flex-nowrap">
       <SkeletonWrapper fullWidth isLoading={statsQuery.isFetching}>
-        <StatsCard
-          formatter={formatter}
-          value={income}
-          title="Income"
-          icon={<TrendingUp className="h-12 w-12 items-center rounded-lg p-2 text-emerald-500 bg-emerald-400/10" />}
-        />
+        <StatsCard formatter={formatter} value={income} title="Income" icon={<TrendingUpIcon />} />
       </SkeletonWrapper>
       <SkeletonWrapper fullWidth isLoading={statsQuery.isFetching}>
-        <StatsCard
-          formatter={formatter}
-          value={expense}
-          title="Expense"
-          icon={<TrendingDown className="h-12 w-12 items-center rounded-lg p-2 text-red-500 bg-red-400/10" />}
-        />
+        <StatsCard formatter={formatter} value={expense} title="Expense" icon={<TrendingDownIcon />} />
       </SkeletonWrapper>
       <SkeletonWrapper fullWidth isLoading={statsQuery.isFetching}>
         <StatsCard

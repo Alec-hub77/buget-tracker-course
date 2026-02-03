@@ -16,14 +16,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreateCategory } from "../_actions/categories";
 import { Category } from "@/lib/generated/prisma/client";
 import { toast } from "sonner";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 interface Props {
   type: TransactionType;
   onSuccessCallback: (category: Category) => void;
+  trigger?: ReactNode;
 }
 
-export const CreateCategoryDialog = ({ type, onSuccessCallback }: Props) => {
+export const CreateCategoryDialog = ({ type, onSuccessCallback, trigger }: Props) => {
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(CreateCategorySchema),
@@ -96,18 +97,24 @@ export const CreateCategoryDialog = ({ type, onSuccessCallback }: Props) => {
     );
   };
 
+  const getTrigger = () => {
+    if (trigger) return trigger;
+
+    return (
+      <Button
+        variant="ghost"
+        className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 cursor-pointer"
+      >
+        <PlusSquare className="mr-2 h-4 w-4" /> Create new
+      </Button>
+    );
+  };
+
   return (
     <DialogWrapper
       open={open}
       setOpen={setOpen}
-      trigger={
-        <Button
-          variant="ghost"
-          className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 cursor-pointer"
-        >
-          <PlusSquare className="mr-2 h-4 w-4" /> Create new
-        </Button>
-      }
+      trigger={getTrigger()}
       title={getDialogTitle()}
       content={getDialogContent()}
       description="Categories are used to group your transactions"

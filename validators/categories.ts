@@ -11,3 +11,10 @@ export const CreateCategorySchema = z.object({
 });
 
 export type CreateCategorySchemaType = z.infer<typeof CreateCategorySchema>;
+
+export const DeleteCategoryScheme = z.object({
+  name: z.string().min(2, "Name mast have least 2 characters").max(20, "Name should not be lognger than 20 characters"),
+  type: z.enum(["income", "expense"]),
+});
+
+export type DeleteCategorySchemeType = z.infer<typeof DeleteCategoryScheme>;

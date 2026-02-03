@@ -20,7 +20,7 @@ const DashboardPage = async () => {
   return (
     <div className="h-full bg-background">
       <div className="border-b bg-card">
-        <div className="container flex flex-wrap justify-between gap-6 py-8 px-6">
+        <div className="w-full items-center flex flex-wrap justify-between gap-6 py-8 px-50">
           <p className="text-3xl font-bold">Hello, {user.firstName} 👋</p>
           <div className="flex items-center gap-3">
             <CreateTransactionDialog trigger={<Button variant={"success"}>New income</Button>} type="income" />
@@ -28,7 +28,7 @@ const DashboardPage = async () => {
           </div>
         </div>
       </div>
-      <div className="px-4">
+      <div className="px-50">
         <Overview userSettings={userSettings} />
         <History userSettings={userSettings} />
       </div>
